@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
+    <color name="colorPrimary">#1E90FF</color> //navigation color
+    <color name="colorPrimaryDark">#1E90FF</color> //header color
     <color name="colorAccent">#80CBC4</color>
+    <color name="color_black">#000000</color>
+    <color name="black">#000000</color>
+    <color name="grey_text">#E6E6E5</color>
+    <color name="grey">#818181</color>
+    <color name="grey_dark">#16AB44</color>
+    <color name="color_ijo">#06D70D</color>
+    <color name="color_biru">#0404F6</color>
+    <color name="orange_drak">#F67504</color>
+    <color name="red_new">#F60404</color>
+    <color name="transparant"> #ffffffff</color>
+    <color name="colorTransparant">#00ffffff</color>
+    <color name="colorTransparants">#80ffffff</color>
+    <color name="orange">#F78D10</color>
+    <color name="anggur">#582841</color>
+    <color name="color_harga">#FF2501</color>
+    <color name="color_preorder">#04508E</color>
+    <color name="color_tersedia">#018316</color>
+    <color name="background_color">#F1F5F8</color>
+    <color name="action_bar">#405260</color>
+    <color name="red_serbaguna">#EB2843</color>
+    <color name="yellow">#FFC107</color>
 </resources>

@@ -1,18 +1,24 @@
 package com.amar.sample.model;
 
-public class ModelDaftarProduk {
+public class ModelRaringPesanan {
 
     private String item1, item2, item3, item4, item5, item6, item7;
 
+    public ModelRaringPesanan(String item1, String item2, String item3) {
+        this.item1 = item1;
+        this.item2 = item2;
+        this.item3 = item3;
+    }
 
-    public ModelDaftarProduk(String item1, String item2, String item3, String item4) {
+
+    public ModelRaringPesanan(String item1, String item2, String item3, String item4) {
         this.item1 = item1;
         this.item2 = item2;
         this.item3 = item3;
         this.item4 = item4;
     }
 
-    public ModelDaftarProduk(String item1, String item2, String item3, String item4, String item5, String item6, String item7) {
+    public ModelRaringPesanan(String item1, String item2, String item3, String item4, String item5, String item6, String item7) {
         this.item1 = item1;
         this.item2 = item2;
         this.item3 = item3;

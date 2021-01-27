@@ -4,6 +4,17 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+/*import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;*/
+
+import com.amar.sample.R;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -28,7 +39,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.X509TrustManager;
 
-import co.id.gmedia.octavian.kartikaapps.R;
 
 import static javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier;
 import static javax.net.ssl.HttpsURLConnection.setDefaultSSLSocketFactory;
@@ -38,7 +48,7 @@ public class APIvolley {
     public static RequestQueue requestQueue;
     String token0 = "", token1 = "", token2 = "", token3 = "",token4 = "", token5 = "";
 
-    public APIvolley(final Context context, JSONObject jsonBody, String requestMethod, String REST_URL, final VolleyCallback callback){
+    public APIvolley(final Context context, JSONObject jsonBody, String requestMethod, final String REST_URL, final VolleyCallback callback){
 
 
     /*
@@ -77,6 +87,7 @@ public class APIvolley {
         }
 
         token3 = AppSharedPreferences.getUid(context);
+        token4 = AppSharedPreferences.getToken(context);
 
         //region initial of stringRequest
         trustAllCertivicate();
@@ -120,8 +131,8 @@ public class APIvolley {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", "application/json");
-                params.put("Client-Service", "front_end_client");
-                params.put("Auth-Key", "gmedia_kartikars");
+                params.put("Client-Service", "gmedia-client");
+                params.put("Auth-Key", "tokotap-client");
                 params.put("User-id", token3);
                 params.put("Token", token4);
                 /*params.put("Userid", AppSharedPreferences.getUserName(context));

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,18 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
 import com.amar.sample.activity.ActivityBuatStruk;
+import com.amar.sample.activity.ActivityPreviewStruk;
 import com.amar.sample.model.ModelDaftarProduk;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<AdapterDaftarBarangStrukPreview.AdapterPdodukViewHolder> {
+public class AdapterDaftarBarangRecomendPreview extends RecyclerView.Adapter<AdapterDaftarBarangRecomendPreview.AdapterPdodukViewHolder> {
 
 
     private ArrayList<ModelDaftarProduk> dataList;
     private Activity activity;
 
-    public AdapterDaftarBarangStrukPreview(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
+    public AdapterDaftarBarangRecomendPreview(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
         this.dataList = dataList;
         this.activity = activity;
     }
@@ -42,8 +42,9 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
 
 
         holder.txt_satuan.setText(dataList.get(position).getItem6());
-        holder.txt_ket.setText(dataList.get(position).getItem4());
+        holder.txt_ket.setText(dataList.get(position).getItem9());
         holder.nama_produk.setText(dataList.get(position).getItem3());
+        holder.txt_jumlah.setText(dataList.get(position).getItem4());
         Integer harga = Integer.parseInt(dataList.get(position).getItem5());
         holder.txt_harga.setText(NumberFormat.getCurrencyInstance().format(harga));
 
@@ -56,7 +57,7 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
         }
 
         //Action Activity
-        ActivityBuatStruk.totalBRG(dataList.get(position).getItem10());
+       // ActivityPreviewStruk.totalBRG(dataList.get(position).getItem10());
 
         /*final Gson gson = new Gson();
         holder.cr_item.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +78,7 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
     }
 
     public class AdapterPdodukViewHolder extends RecyclerView.ViewHolder {
-        private TextView txt_satuan, txt_ket, nama_produk, txt_harga;
+        private TextView txt_satuan, txt_ket, nama_produk, txt_harga, txt_jumlah;
         private CardView cr_item;
         private LinearLayout ln_bg;
 
@@ -87,6 +88,7 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
             txt_ket = (TextView) itemView.findViewById(R.id.txt_ket);
             txt_harga = (TextView) itemView.findViewById(R.id.txt_harga);
             nama_produk = (TextView) itemView.findViewById(R.id.txt_nama_produk);
+            txt_jumlah = (TextView) itemView.findViewById(R.id.txt_jumlah);
             ln_bg = (LinearLayout) itemView.findViewById(R.id.head);
 
         }

@@ -18,13 +18,13 @@ import com.amar.sample.model.ModelDaftarProduk;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class AdapterDaftarBarangStruk extends RecyclerView.Adapter<AdapterDaftarBarangStruk.AdapterPdodukViewHolder> {
+public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaftarBarangRecomed.AdapterPdodukViewHolder> {
 
 
     private ArrayList<ModelDaftarProduk> dataList;
     private Activity activity;
 
-    public AdapterDaftarBarangStruk(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
+    public AdapterDaftarBarangRecomed(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
         this.dataList = dataList;
         this.activity = activity;
     }
@@ -56,12 +56,12 @@ public class AdapterDaftarBarangStruk extends RecyclerView.Adapter<AdapterDaftar
         }
 
         //Action Activity
-        ActivityBuatStruk.totalBRG(dataList.get(position).getItem10());
+        //ActivityBuatStruk.totalBRG(dataList.get(position).getItem9());
 
         holder.img_hapus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ActivityBuatStruk)activity).HapusBarang(dataList.get(position).getItem1());
+                ((ActivityBuatStruk)activity).HapusBarang(dataList.get(position).getItem1(), 2);
             }
         });
         /*final Gson gson = new Gson();

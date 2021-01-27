@@ -1,4 +1,4 @@
-package co.id.gmedia.octavian.kartikaapps.util;
+package com.amar.sample.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,12 +8,14 @@ public class AppSharedPreferences {
     private static final String LOGIN_PREF = "login";
     private static final String STATUS_PREF = "user_status";
     private static final String FCM_PREF = "fcm_id";
-    private static final String TOKEN_PREF = "token";
+    private static final String TOKEN_PREF = "Token";
     private static final String UID_PREF = "User-id";
     private static final String EMAIL_PREF = "email";
     private static final String REGISTER_PREF = "registered";
     private static final String NILAI_PIUTANG = "piutang";
     private static final String CHAT_FLAG = "is_balasan";
+    private static final String NAMA = "nama_pemilik";
+    private static final String PHOTOS_IMAGE = "logo_merchant";
 
     private static SharedPreferences getPreferences(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
@@ -37,6 +39,12 @@ public class AppSharedPreferences {
 
     public static String getToken(Context context){
         return getPreferences(context).getString(TOKEN_PREF, "");
+    }
+    public static String getNama(Context context){
+        return getPreferences(context).getString(NAMA, "");
+    }
+    public static String getPhotosImage(Context context){
+        return getPreferences(context).getString(PHOTOS_IMAGE, "");
     }
 
     public static void setFcmId(Context context, String fcm){
@@ -64,11 +72,13 @@ public class AppSharedPreferences {
         return getPreferences(context).getBoolean(LOGIN_PREF, false);
     }
 
-    public static void Login(Context context, String uid, String token){
+    public static void Login(Context context, String uid, String token, String nama){
         SharedPreferences.Editor editor = getPreferences(context).edit();
         editor.putBoolean(LOGIN_PREF, true);
         editor.putString(UID_PREF, uid);
         editor.putString(TOKEN_PREF, token);
+        editor.putString(NAMA, nama);
+
         editor.apply();
     }
 

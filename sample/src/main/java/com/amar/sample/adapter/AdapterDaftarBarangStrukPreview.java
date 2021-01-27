@@ -13,18 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
 import com.amar.sample.activity.ActivityBuatStruk;
+import com.amar.sample.activity.ActivityPreviewStruk;
 import com.amar.sample.model.ModelDaftarProduk;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaftarBarangRecomed.AdapterPdodukViewHolder> {
+public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<AdapterDaftarBarangStrukPreview.AdapterPdodukViewHolder> {
 
 
     private ArrayList<ModelDaftarProduk> dataList;
     private Activity activity;
 
-    public AdapterDaftarBarangRecomed(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
+    public AdapterDaftarBarangStrukPreview(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
         this.dataList = dataList;
         this.activity = activity;
     }
@@ -32,7 +33,7 @@ public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaft
     @Override
     public AdapterPdodukViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_adapter_barang_struk, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_adapter_preview_struk, parent, false);
         return new AdapterPdodukViewHolder(view);
     }
 
@@ -42,8 +43,9 @@ public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaft
 
 
         holder.txt_satuan.setText(dataList.get(position).getItem6());
-        holder.txt_jumlah.setText(dataList.get(position).getItem4());
+        holder.txt_ket.setText(dataList.get(position).getItem9());
         holder.nama_produk.setText(dataList.get(position).getItem3());
+        holder.txt_jumlah.setText(dataList.get(position).getItem4());
         Integer harga = Integer.parseInt(dataList.get(position).getItem5());
         holder.txt_harga.setText(NumberFormat.getCurrencyInstance().format(harga));
 
@@ -56,14 +58,8 @@ public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaft
         }
 
         //Action Activity
-        ActivityBuatStruk.totalBRG(dataList.get(position).getItem10());
+        ActivityPreviewStruk.totalBRG(dataList.get(position).getItem10());
 
-        holder.img_hapus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((ActivityBuatStruk)activity).HapusBarang(dataList.get(position).getItem1(), 2);
-            }
-        });
         /*final Gson gson = new Gson();
         holder.cr_item.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,18 +79,17 @@ public class AdapterDaftarBarangRecomed extends RecyclerView.Adapter<AdapterDaft
     }
 
     public class AdapterPdodukViewHolder extends RecyclerView.ViewHolder {
-        private TextView txt_satuan, txt_jumlah, nama_produk, txt_harga;
+        private TextView txt_satuan, txt_ket, nama_produk, txt_harga, txt_jumlah;
         private CardView cr_item;
-        private ImageView img_hapus;
         private LinearLayout ln_bg;
 
         public AdapterPdodukViewHolder(View itemView) {
             super(itemView);
             txt_satuan = (TextView) itemView.findViewById(R.id.txt_satuan);
-            txt_jumlah = (TextView) itemView.findViewById(R.id.txt_jumlah);
+            txt_ket = (TextView) itemView.findViewById(R.id.txt_ket);
             txt_harga = (TextView) itemView.findViewById(R.id.txt_harga);
             nama_produk = (TextView) itemView.findViewById(R.id.txt_nama_produk);
-            img_hapus = (ImageView) itemView.findViewById(R.id.hapus);
+            txt_jumlah = (TextView) itemView.findViewById(R.id.txt_jumlah);
             ln_bg = (LinearLayout) itemView.findViewById(R.id.head);
 
         }

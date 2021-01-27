@@ -3,9 +3,35 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/action_bar</item>
+        <item name="colorPrimaryDark">@color/action_bar</item>
+        <item name="colorAccent">@color/red_serbaguna</item>
+    </style>
+
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="itemIconTint">@android:color/white</item>
+        <item name="itemTextColor">@android:color/white</item>
+        <item name="android:background">#00ffffff</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/red_serbaguna</item>
+        <item name="android:textColorSecondary">@color/action_bar</item>
+        <item name="android:textSize">7sp</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="RatingButtom" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/action_bar</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
+
+    <style name="ButtonPesananSelesai" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/red_serbaguna</item>
+        <item name="tabIndicatorColor">@color/red_serbaguna</item>
+        <item name="tabSelectedTextColor">@color/red_serbaguna</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
 </resources>

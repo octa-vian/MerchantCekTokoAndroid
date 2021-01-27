@@ -1,66 +1,104 @@
 package com.amar.sample.fragmen;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.amar.sample.R;
+import com.amar.sample.adapter.AdapterDalamPengiriman;
+import com.amar.sample.adapter.AdapterPesananKonfrm;
+import com.amar.sample.model.ModelDaftarProduk;
+import com.amar.sample.util.APIvolley;
+import com.amar.sample.util.Server;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentDalamPengiriman#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class FragmentDalamPengiriman extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private View view;
+    private Activity activity;
+    private RecyclerView recyclerView;
+    private AdapterDalamPengiriman adapterDaftarPesanan;
+    private ArrayList<ModelDaftarProduk> ListDaftarProduk = new ArrayList<>();
 
     public FragmentDalamPengiriman() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentDalamPengiriman.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentDalamPengiriman newInstance(String param1, String param2) {
-        FragmentDalamPengiriman fragment = new FragmentDalamPengiriman();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dalam_pengiriman, container, false);
+        activity = getActivity();
+        view = inflater.inflate(R.layout.fragment_dalam_pengiriman, container, false);
+
+        recyclerView = view.findViewById(R.id.rc_daftar_pesanan);
+        adapterDaftarPesanan = new AdapterDalamPengiriman(activity, ListDaftarProduk);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(activity, 1);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapterDaftarPesanan);
+
+        addData();
+
+        return view;
     }
+
+    private void addData(){
+        new APIvolley(activity, new JSONObject(), "GET", Server.URL_LIST_DALAM_PENGIRIMAN, new APIvolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    ListDaftarProduk.clear();
+                    JSONObject order = new JSONObject(result);
+                    String message = order.getJSONObject("metadata").getString("message");
+                    String status = order.getJSONObject("metadata").getString("status");
+
+                    if (Integer.parseInt(status)==200){
+
+                        JSONArray obj = order.getJSONArray("response");
+                        for (int i = 0; i < obj.length(); i++){
+                            JSONObject objt = obj.getJSONObject(i);
+
+                            ListDaftarProduk.add(new ModelDaftarProduk(
+                                    objt.getString("id"),
+                                    objt.getString("no_order"),
+                                    objt.getString("tgl_pengiriman"),
+                                    objt.getString("jam_dari_pengiriman"),
+                                    objt.getString("jam_sampai_pengiriman"),
+                                    objt.getString("total"),
+                                    objt.getString("insert_at")
+                            ));
+                        }
+                    } else {
+                        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                adapterDaftarPesanan.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onError(String result) {
+                Toast.makeText(activity, "Terjadi Kesalahan", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 }

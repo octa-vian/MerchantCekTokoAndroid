@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
 import com.amar.sample.activity.ActivityDetailPesananBaru;
+import com.amar.sample.activity.MenungguKonfrm.ActivityDetailKonfrm;
 import com.amar.sample.model.ModelDaftarProduk;
 import com.amar.sample.util.Server;
 import com.google.gson.Gson;
@@ -50,7 +51,7 @@ public class AdapterPesananKonfrm extends RecyclerView.Adapter<AdapterPesananKon
         holder.cr_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(activity, ActivityDetailPesananBaru.class);
+                Intent i = new Intent(activity, ActivityDetailKonfrm.class);
                 i.putExtra(Server.EXTRA_BARANG, gson.toJson(item));
                 activity.startActivity(i);
             }

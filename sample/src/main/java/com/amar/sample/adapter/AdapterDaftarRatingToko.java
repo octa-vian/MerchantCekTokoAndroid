@@ -1,31 +1,32 @@
 package com.amar.sample.adapter;
 
 import android.app.Activity;
+import android.support.v4.media.RatingCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
-import com.amar.sample.activity.ActivityBuatStruk;
 import com.amar.sample.activity.ActivityPreviewStruk;
 import com.amar.sample.model.ModelDaftarProduk;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<AdapterDaftarBarangStrukPreview.AdapterPdodukViewHolder> {
+public class AdapterDaftarRatingToko extends RecyclerView.Adapter<AdapterDaftarRatingToko.AdapterPdodukViewHolder> {
 
 
     private ArrayList<ModelDaftarProduk> dataList;
     private Activity activity;
 
-    public AdapterDaftarBarangStrukPreview(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
+    public AdapterDaftarRatingToko(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
         this.dataList = dataList;
         this.activity = activity;
     }
@@ -33,42 +34,48 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
     @Override
     public AdapterPdodukViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_adapter_preview_struk, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_adapter_dafter_rating, parent, false);
         return new AdapterPdodukViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(AdapterPdodukViewHolder holder, final int position) {
+    public void onBindViewHolder(final AdapterPdodukViewHolder holder, final int position) {
         final ModelDaftarProduk item = dataList.get(position);
 
+        holder.txt_no_pemesanan.setText(dataList.get(position).getItem1());
+        holder.txt_nama_pembeli.setText(dataList.get(position).getItem2());
 
-        holder.txt_satuan.setText(dataList.get(position).getItem6());
-        holder.txt_ket.setText(dataList.get(position).getItem9());
-        holder.nama_produk.setText(dataList.get(position).getItem3());
-        holder.txt_jumlah.setText(dataList.get(position).getItem4());
-        Integer harga = Integer.parseInt(dataList.get(position).getItem5());
-        holder.txt_harga.setText(NumberFormat.getCurrencyInstance().format(harga));
 
-        /*if(itemSelected.getItem11().toLowerCase().trim().equals("available")  || itemSelected.getItem11().toLowerCase().trim().equals("tersedia")){
-            templateViewHolder.txt_status.setTextColor(activity.getResources().getColor(R.color.color_tersedia));
-        }*/
+        float rating, rating2, rating3;
+        rating = 2;
+        rating2 = 1;
+        rating3 = 2;
 
-        if (item.getItem8().toLowerCase().trim().equals("0")){
-            holder.ln_bg.setBackgroundColor(activity.getResources().getColor(R.color.grey_text));
-        }
+        //Rating 1
+        holder.ratingBar.setRating(rating);
+        holder.nila_toko.setText(String.valueOf(rating));
+        holder.ratingBar.setEnabled(false);
 
-        //Action Activity
-        ActivityPreviewStruk.totalBRG(dataList.get(position).getItem10());
+        //Rating 2
+        holder.ratingHarga.setRating(rating2);
+        holder.nilai_harga.setText(String.valueOf(rating2));
+        holder.ratingHarga.setEnabled(false);
 
-        /*final Gson gson = new Gson();
-        holder.cr_item.setOnClickListener(new View.OnClickListener() {
+        //Rating 3
+        holder.ratingPelayanan.setRating(rating3);
+        holder.nilai_pelayanan.setText(String.valueOf(rating3));
+        holder.ratingPelayanan.setEnabled(false);
+
+
+        /*holder.ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(activity, ActivityDetailPesananBaru.class);
-                i.putExtra(Server.EXTRA_BARANG, gson.toJson(item));
-                activity.startActivity(i);
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                rating = 3;
+                holder.ratingBar.setRating(rating);
+                holder.nila_toko.setText(String.valueOf(rating));
             }
         });*/
+
     }
 
 
@@ -79,18 +86,24 @@ public class AdapterDaftarBarangStrukPreview extends RecyclerView.Adapter<Adapte
     }
 
     public class AdapterPdodukViewHolder extends RecyclerView.ViewHolder {
-        private TextView txt_satuan, txt_ket, nama_produk, txt_harga, txt_jumlah;
+        private TextView txt_no_pemesanan, txt_nama_pembeli;
         private CardView cr_item;
         private LinearLayout ln_bg;
+        private AppCompatRatingBar ratingBar, ratingHarga, ratingPelayanan;
+        private TextView nila_toko, nilai_harga, nilai_pelayanan;
 
         public AdapterPdodukViewHolder(View itemView) {
             super(itemView);
-            txt_satuan = (TextView) itemView.findViewById(R.id.txt_satuan);
-            txt_ket = (TextView) itemView.findViewById(R.id.txt_ket);
-            txt_harga = (TextView) itemView.findViewById(R.id.txt_harga);
-            nama_produk = (TextView) itemView.findViewById(R.id.txt_nama_produk);
-            txt_jumlah = (TextView) itemView.findViewById(R.id.txt_jumlah);
-            ln_bg = (LinearLayout) itemView.findViewById(R.id.head);
+            txt_no_pemesanan = (TextView) itemView.findViewById(R.id.no_pemesanan);
+            txt_nama_pembeli = (TextView) itemView.findViewById(R.id.nama_pembeli);
+            nila_toko = (TextView) itemView.findViewById(R.id.nl_rating_toko);
+            nilai_harga = (TextView) itemView.findViewById(R.id.txt_Rharga);
+            nilai_pelayanan = (TextView) itemView.findViewById(R.id.txt_Rpenilaian);
+            ratingBar = (AppCompatRatingBar) itemView.findViewById(R.id.penilaian);
+            ratingHarga = (AppCompatRatingBar) itemView.findViewById(R.id.penilaian_harga);
+            ratingPelayanan = (AppCompatRatingBar) itemView.findViewById(R.id.penilaian_pelayanan);
+
+           // ln_bg = (LinearLayout) itemView.findViewById(R.id.head);
 
         }
     }

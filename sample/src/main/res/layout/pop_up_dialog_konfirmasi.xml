@@ -23,7 +23,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:text="Apakah anda yakin ingin menghapus Barang?"
+                android:gravity="center"
+                android:text="Order Dalam Prosses Pengiriman, segera selsaikan Transaksi"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -34,20 +35,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/btn_tidak"
-                    android:layout_width="0dp"
-                    android:layout_height="35dp"
-                    android:textColor="#ffffff"
-                    android:layout_margin="10dp"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_btn_red"
-                    android:text="Tidak"
-                    android:layout_weight="0.6"/>
+                android:weightSum="1">
 
                 <Button
                     android:id="@+id/btn_ya"
@@ -59,8 +47,8 @@
                     android:gravity="center"
                     android:background="@drawable/border_btn"
                     android:textColor="#ffffff"
-                    android:text="Ya"
-                    android:layout_weight="0.6"/>
+                    android:text="Ok"
+                    android:layout_weight="0.4"/>
 
             </LinearLayout>
 

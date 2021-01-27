@@ -11,7 +11,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
+import com.amar.sample.activity.ActivityBuatStruk;
 import com.amar.sample.activity.ActivityPreviewStruk;
+import com.amar.sample.activity.MenungguKonfrm.ActivityDetailKonfrm;
 import com.amar.sample.model.ModelDaftarProduk;
 
 import java.text.NumberFormat;
@@ -39,7 +41,6 @@ public class AdapterDetailBarangPreview extends RecyclerView.Adapter<AdapterDeta
     public void onBindViewHolder(AdapterPdodukViewHolder holder, final int position) {
         final ModelDaftarProduk item = dataList.get(position);
 
-
         holder.txt_satuan.setText(dataList.get(position).getItem6());
         holder.txt_ket.setText(dataList.get(position).getItem9());
         holder.nama_produk.setText(dataList.get(position).getItem3());
@@ -56,7 +57,8 @@ public class AdapterDetailBarangPreview extends RecyclerView.Adapter<AdapterDeta
         }
 
         //Action Activity
-        ActivityPreviewStruk.totalBRG(dataList.get(position).getItem10());
+
+        ((ActivityDetailKonfrm)activity).totalBRG(dataList.get(position).getItem10());
 
         /*final Gson gson = new Gson();
         holder.cr_item.setOnClickListener(new View.OnClickListener() {

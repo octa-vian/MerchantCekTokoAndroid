@@ -1,9 +1,581 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".activity.ActivityChangeProfile">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/gd_horizontal_center"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/action_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gd_atas" />
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:background="@color/action_bar"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="@id/gd_atas">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ubah Profile"
+            android:paddingLeft="30dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/img_back"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textSize="20dp"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
+
+    <com.amar.library.ui.StickyScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/rl_header"
+        app:layout_constraintBottom_toBottomOf="@id/gd_bawah"
+        app:layout_constraintEnd_toStartOf="@id/gd_kanan"
+        app:layout_constraintStart_toEndOf="@id/gd_kiri">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_profile"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="92dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toRightOf="@id/cr_profile"
+                    android:layout_alignBottom="@id/cr_profile"
+                    android:src="@drawable/kamera" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cr_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cardCornerRadius="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:elevation="15dp"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/sepatu5"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_below="@id/rl_profile"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:text="Nama Merchant:"/>
+
+                <EditText
+                    android:id="@+id/edt_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingLeft="10dp"
+                    android:inputType="text"
+                    android:text=""
+                    android:background="@drawable/border_spinner"/>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="No. Hp Merchant:"/>
+
+                    <EditText
+                        android:id="@+id/edt_noHp"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:text=""
+                        android:background="@drawable/border_spinner"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="Alamat Merchant:"/>
+
+                    <EditText
+                        android:id="@+id/edt_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="5dp"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text=""
+                        android:background="@drawable/border_spinner"/>
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:text="Kelurahan:"/>
+
+                <RelativeLayout
+                    android:layout_width="180dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/border_spinner"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spn_kelurahan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_down" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="Kecamatan:"/>
+
+                    <RelativeLayout
+                        android:layout_width="180dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.3"
+                        android:background="@drawable/border_spinner"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/spn_kecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="8dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_down" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="Kota:"/>
+
+                    <RelativeLayout
+                        android:layout_width="180dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.3"
+                        android:background="@drawable/border_spinner"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/spn_kota"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="8dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_down" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="Provinsi:"/>
+
+                    <RelativeLayout
+                        android:layout_width="180dp"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.3"
+                        android:background="@drawable/border_spinner"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/spn_provinsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:spinnerMode="dropdown" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="8dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_down" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/black"
+                        android:text="Jam Oprasional:"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/black"
+                            android:text="Jam Buka:"/>
+
+                        <LinearLayout
+                            android:id="@+id/ln_btn_picker_buka"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/border_spinner"
+                            android:gravity="center"
+                            android:weightSum="3"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/txt_hours"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textSize="28dp"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text=":"
+                                android:textColor="@color/black"
+                                android:textSize="28dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/txt_menit"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="28dp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:textSize="12sp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/black"
+                            android:text="Jam Tutup:"/>
+
+                        <LinearLayout
+                            android:id="@+id/ln_btn_picker_tutup"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/border_spinner"
+                            android:gravity="center"
+                            android:weightSum="3"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/txt_hours_tutup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/black"
+                                android:textSize="28dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="datetime"
+                                android:text=":"
+                                android:textColor="@color/black"
+                                android:textSize="28dp"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/txt_menit_tutup"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="28dp"
+                                android:textColor="@color/black"
+                                android:inputType="datetime"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:layout_gravity="center"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="20dp">
+
+                        <Button
+                            android:id="@+id/btn_simpan"
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:background="@drawable/border_btn"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"
+                            android:layout_gravity="center"
+                            android:text="Simpan Perubahan"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.amar.library.ui.StickyScrollView>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gd_atas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gd_horizontal_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gd_bawah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gd_kiri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gd_kanan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

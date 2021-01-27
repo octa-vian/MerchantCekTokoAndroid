@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    card_view:cardCornerRadius="6dp"
-    card_view:cardElevation="3dp">
+    android:background="@drawable/border_spinner"
+    android:id="@+id/cr_btn_tambah"
+    android:layout_margin="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,9 +39,10 @@
 
                 <ImageView
                     android:id="@+id/iv_cardview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/box" />
 
                 <RelativeLayout
                     android:id="@+id/iv_wtf"
@@ -76,7 +77,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="nama produk"
                     android:textColor="@color/black"
                     android:textSize="10sp" />
 
@@ -95,20 +95,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
-                    android:text="Rp.120.000.00"
-                    android:textColor="@color/color_harga"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik_medium"
-                    android:gravity="left"
-                    android:text=""
-                    android:layout_marginBottom="10dp"
-                    android:textColor="@color/grey_dark"
+                    android:text="Tambahkan Produk Anda"
+                    android:gravity="center"
+                    android:textColor="@color/black"
                     android:textSize="10sp" />
+
+
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,4 +123,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

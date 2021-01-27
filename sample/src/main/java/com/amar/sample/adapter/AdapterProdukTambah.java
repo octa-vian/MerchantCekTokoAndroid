@@ -1,42 +1,39 @@
-package co.id.gmedia.octavian.kartikaapps.adapter;
+package com.amar.sample.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.google.gson.Gson;
+import com.amar.sample.ActivityFromTambahProduk;
+import com.amar.sample.R;
+import com.amar.sample.activity.ActivityBuatStruk;
+import com.amar.sample.model.ModelDaftarProduk;
+import com.amar.sample.model.ModelProduk;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.util.List;
 
-import co.id.gmedia.octavian.kartikaapps.ActivityListDetailHotProduk;
-import co.id.gmedia.octavian.kartikaapps.R;
-import co.id.gmedia.octavian.kartikaapps.activity.ActivityListDetailProduk;
-import co.id.gmedia.octavian.kartikaapps.activity.DetailActivityBarang;
-import co.id.gmedia.octavian.kartikaapps.model.ModelProduk;
-import co.id.gmedia.octavian.kartikaapps.util.Constant;
 
-
-public class MerchantHotProduk extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterProdukTambah extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private int HEADER = 90;
 
     private Activity activity;
-    private List<ModelProduk> listMerchant;
+    private List<ModelDaftarProduk> listMerchant;
 
-    public MerchantHotProduk(Activity activity, List<ModelProduk> listMerchant){
+    public AdapterProdukTambah(Activity activity, List<ModelDaftarProduk> listMerchant){
         this.activity = activity;
         this.listMerchant = listMerchant;
     }
@@ -55,10 +52,10 @@ public class MerchantHotProduk extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         if(i == HEADER){
-            return new HeaderViewHolder(LayoutInflater.from(activity).inflate(R.layout.layout_item_hotproduk_baru, viewGroup, false));
+            return new HeaderViewHolder(LayoutInflater.from(activity).inflate(R.layout.item_adapter_tambah, viewGroup, false));
         }
         else{
-            return new MerchantPopulerViewHolder(LayoutInflater.from(activity).inflate(R.layout.layout_adapter_hotproduk_baru, viewGroup, false));
+            return new MerchantPopulerViewHolder(LayoutInflater.from(activity).inflate(R.layout.item_adapter_barang_struk, viewGroup, false));
         }
     }
 
@@ -67,31 +64,30 @@ public class MerchantHotProduk extends RecyclerView.Adapter<RecyclerView.ViewHol
         if(viewHolder instanceof MerchantPopulerViewHolder){
             MerchantPopulerViewHolder holder = (MerchantPopulerViewHolder) viewHolder ;
 
-            final ModelProduk item = listMerchant.get(i - 1);
+            final ModelDaftarProduk item = listMerchant.get(i - 1);
 
-            Picasso.get().load(item.getItem2()).into(holder.iv_cardview);
-            holder.txt_nama.setText(item.getItem3());
-            holder.txt_harga.setText(item.getItem4());
-            holder.txt_status.setText(item.getItem5());
+            //holder.txt_satuan.setText(item.getItem6());
+            holder.txt_jumlah.setText(item.getItem4()+" "+ item.getItem6());
+            holder.nama_produk.setText(item.getItem3());
+            Integer harga = Integer.parseInt(item.getItem5());
+            holder.txt_harga.setText(NumberFormat.getCurrencyInstance().format(harga));
 
-            if (item.getItem6().equals("1")){
-                holder.txt_harga_promo.setText(item.getItem7());
-                holder.txt_harga_promo.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            } else{
-                holder.txt_harga_promo.setText(item.getItem7());
-                holder.txt_harga_promo.setVisibility(View.GONE);
+
+            if (item.getItem8().toLowerCase().trim().equals("0")){
+                holder.ln_bg.setBackgroundColor(activity.getResources().getColor(R.color.grey_text));
             }
 
-            final ModelProduk itemSelected = listMerchant.get(i-1);
-            if(itemSelected.getItem5().toLowerCase().trim().equals("available")  || itemSelected.getItem5().toLowerCase().trim().equals("tersedia")){
-                holder.txt_status.setTextColor(activity.getResources().getColor(R.color.color_tersedia));
-            }
-            else{
-                holder.txt_status.setTextColor(activity.getResources().getColor(R.color.color_preorder));
-            }
+            ActivityBuatStruk.totalBRG(item.getItem9());
+
+            holder.img_hapus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((ActivityBuatStruk)activity).HapusBarang(item.getItem1(), 2);
+                }
+            });
 
 
-            final Gson gson = new Gson();
+            /*final Gson gson = new Gson();
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,18 +96,19 @@ public class MerchantHotProduk extends RecyclerView.Adapter<RecyclerView.ViewHol
                     activity.startActivity(i);
 
                 }
-            });
+            });*/
 
         } else if (viewHolder instanceof HeaderViewHolder){
             HeaderViewHolder head = (HeaderViewHolder) viewHolder ;
 
-            head.LihatSemua.setOnClickListener(new View.OnClickListener() {
+
+            head.btn_tambah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(activity, ActivityListDetailHotProduk.class);
-                    activity.startActivity(intent);
+                    ((ActivityBuatStruk)activity).InputBarangRecomend();
                 }
             });
+            head.btn_tambah.setVisibility(View.GONE);
         }
     }
 
@@ -124,29 +121,32 @@ public class MerchantHotProduk extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         ImageView img_header;
         TextView LihatSemua;
+        CardView btn_tambah;
 
         HeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_header = itemView.findViewById(R.id.iv_cardview);
-            LihatSemua = itemView.findViewById(R.id.lihat_semua);
+           // img_header = itemView.findViewById(R.id.iv_cardview);
+           // LihatSemua = itemView.findViewById(R.id.lihat_semua);
+            btn_tambah = itemView.findViewById(R.id.cr_btn_tambah);
         }
     }
 
 
     class MerchantPopulerViewHolder extends RecyclerView.ViewHolder{
 
-        private CardView cardView;
-        private ImageView iv_cardview;
-        private TextView txt_nama, txt_harga, txt_status, txt_harga_promo;
+        private TextView txt_satuan, txt_jumlah, nama_produk, txt_harga;
+        private CardView cr_item;
+        private ImageView img_hapus;
+        private LinearLayout ln_bg;
 
         MerchantPopulerViewHolder(@NonNull View itemView) {
             super(itemView);
-            iv_cardview = (ImageView) itemView.findViewById(R.id.iv_cardview);
-            txt_nama = (TextView) itemView.findViewById(R.id.txt_nama_brg);
-            txt_harga =  (TextView) itemView.findViewById(R.id.txt_harga);
-            txt_status =  (TextView) itemView.findViewById(R.id.status);
-            cardView = (CardView) itemView.findViewById(R.id.card_produk);
-            txt_harga_promo = (TextView) itemView.findViewById(R.id.txt_harga_promo);
+            //txt_satuan = (TextView) itemView.findViewById(R.id.txt_satuan);
+            txt_jumlah = (TextView) itemView.findViewById(R.id.txt_jumlah);
+            txt_harga = (TextView) itemView.findViewById(R.id.txt_harga);
+            nama_produk = (TextView) itemView.findViewById(R.id.txt_nama_produk);
+            img_hapus = (ImageView) itemView.findViewById(R.id.hapus);
+            ln_bg = (LinearLayout) itemView.findViewById(R.id.head);
         }
     }
 }

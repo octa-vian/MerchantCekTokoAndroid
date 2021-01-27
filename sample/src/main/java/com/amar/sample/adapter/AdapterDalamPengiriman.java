@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amar.sample.R;
-import com.amar.sample.activity.ActivityDetailPesananBaru;
+import com.amar.sample.activity.DalamPengiriman.ActivityDalamPengiriman;
 import com.amar.sample.activity.MenungguKonfrm.ActivityDetailKonfrm;
 import com.amar.sample.model.ModelDaftarProduk;
 import com.amar.sample.util.Server;
@@ -19,13 +19,13 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class AdapterPesananKonfrm extends RecyclerView.Adapter<AdapterPesananKonfrm.AdapterPdodukViewHolder> {
+public class AdapterDalamPengiriman extends RecyclerView.Adapter<AdapterDalamPengiriman.AdapterPdodukViewHolder> {
 
 
     private ArrayList<ModelDaftarProduk> dataList;
     private Activity activity;
 
-    public AdapterPesananKonfrm(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
+    public AdapterDalamPengiriman(Activity activity, ArrayList<ModelDaftarProduk> dataList) {
         this.dataList = dataList;
         this.activity = activity;
     }
@@ -51,7 +51,7 @@ public class AdapterPesananKonfrm extends RecyclerView.Adapter<AdapterPesananKon
         holder.cr_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(activity, ActivityDetailKonfrm.class);
+                Intent i = new Intent(activity, ActivityDalamPengiriman.class);
                 i.putExtra(Server.EXTRA_BARANG, gson.toJson(item));
                 activity.startActivity(i);
             }
